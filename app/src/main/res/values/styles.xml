@@ -8,6 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--For calculator-->
+
     <style name="ActionButtonStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -26,7 +28,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:elevation">5dp</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">40sp</item>
+        <item name="android:textSize">30sp</item>
         <item name="android:background">@drawable/special_round_button</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_margin">5dp</item>
@@ -42,6 +44,30 @@
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/round_button</item>
         <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <!--For Random number-->
+
+    <style name="edittext">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:background">@color/cold</item>
+        <item name="android:inputType">number</item>
+    </style>
+
+    <style name="Randombutton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/round_button</item>
+    </style>
+
+    <style name="textview">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">100sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/bisque</item>
     </style>
 
 </resources>
