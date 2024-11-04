@@ -1,26 +1,19 @@
 package com.heinlin.thenewsapp.ui.fragments
 
-import android.content.ClipData.Item
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.google.android.material.snackbar.Snackbar
+import com.heinlin.thenewsapp.NewsActivity
 import com.heinlin.thenewsapp.R
 import com.heinlin.thenewsapp.adapters.NewsAdapter
 import com.heinlin.thenewsapp.databinding.FragmentFavoritesBinding
-import com.heinlin.thenewsapp.databinding.FragmentHeadlinesBinding
-import com.heinlin.thenewsapp.ui.NewsActivity
-import com.heinlin.thenewsapp.ui.NewsViewModel
-
+import com.heinlin.thenewsapp.ui.viewmodel.NewsViewModel
 
 class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
@@ -41,6 +34,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
             }
             findNavController().navigate(R.id.action_favouritesFragment_to_articleFragment, bundle)
         }
+
         val itemTouchHelperCallback =
             object : ItemTouchHelper.SimpleCallback(
                 ItemTouchHelper.UP or ItemTouchHelper.DOWN,
@@ -60,7 +54,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
                     newsViewModel.deleteArticle(article)
                     Snackbar.make(view, "Remove from Favorites", Snackbar.LENGTH_LONG).apply {
                         setAction("Undo") {
-                            newsViewModel.addToFavotites(article)
+                            newsViewModel.addToFavorites(article)
                         }
                         show()
                     }
@@ -71,10 +65,9 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
             attachToRecyclerView(binding.recyclerFavourites)
         }
 
-        newsViewModel.getFavotiteNews().observe(viewLifecycleOwner, Observer { articles ->
+        newsViewModel.getFavoriteNews().observe(viewLifecycleOwner, Observer { articles ->
             newsAdapter.differ.submitList(articles)
         })
-
 
     }
 
@@ -85,6 +78,5 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
             layoutManager = LinearLayoutManager(activity)
         }
     }
-
 
 }

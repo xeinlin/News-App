@@ -2,27 +2,24 @@ package com.heinlin.thenewsapp.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.heinlin.thenewsapp.NewsActivity
 import com.heinlin.thenewsapp.R
 import com.heinlin.thenewsapp.adapters.NewsAdapter
-import com.heinlin.thenewsapp.databinding.FragmentFavoritesBinding
-import com.heinlin.thenewsapp.databinding.FragmentHeadlinesBinding
 import com.heinlin.thenewsapp.databinding.FragmentSearchBinding
-import com.heinlin.thenewsapp.ui.NewsActivity
-import com.heinlin.thenewsapp.ui.NewsViewModel
+import com.heinlin.thenewsapp.ui.viewmodel.NewsViewModel
 import com.heinlin.thenewsapp.util.Constants
 import com.heinlin.thenewsapp.util.Constants.Companion.SEARCH_NEWS_TIME_DELAY
 import com.heinlin.thenewsapp.util.Resource
@@ -43,16 +40,16 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding = FragmentSearchBinding.bind(view)
 
         itemSearchError = view.findViewById(R.id.itemSearchError)
 
-        val inflater = requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val inflater =
+            requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view: View = inflater.inflate(R.layout.item_error, null)
 
-        val errorView: View = inflater.inflate(R.layout.item_error, null)
-        retryButtom = errorView.findViewById(R.id.retryButton)
-        errorText = errorView.findViewById(R.id.errorText)
+        retryButtom = view.findViewById(R.id.retryButton)
+        errorText = view.findViewById(R.id.errorText)
 
         newsViewModel = (activity as NewsActivity).newsViewModel
         setupSearchRecycler()
@@ -64,20 +61,23 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             findNavController().navigate(R.id.action_searchFragment_to_articleFragment, bundle)
         }
 
+        // Set up text listener for search EditText
         var job: Job? = null
-        binding.searchEdit.addTextChangedListener() { editable ->
+        binding.searchEdit.addTextChangedListener { editable ->
             job?.cancel()
             job = MainScope().launch {
                 delay(SEARCH_NEWS_TIME_DELAY)
                 editable?.let {
-                    if (editable.toString().isNotEmpty()) {
-                        newsViewModel.searchNews(editable.toString())
+                    if (it.toString().isNotEmpty()) {
+                        newsViewModel.searchNews(it.toString())
+                    } else {
+                        newsAdapter.differ.submitList(emptyList()) // Clear previous results if search is empty
                     }
                 }
             }
         }
 
-        newsViewModel.searchNews.observe(viewLifecycleOwner, Observer { response ->
+        newsViewModel.headlines.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success<*> -> {
                     hideProgressBar()
@@ -85,7 +85,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                     response.data?.let { newsResponse ->
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
                         val totalPages = newsResponse.totalResults / Constants.QUERY_PAGE_SIZE
-                        isLastPage = newsViewModel.searchNewsPage == totalPages
+                        isLastPage = newsViewModel.headlinesPage == totalPages
                         if (isLastPage) {
                             binding.recyclerSearch.setPadding(0, 0, 0, 0)
                         }
@@ -113,6 +113,11 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             } else {
                 hideErrorMessage()
             }
+        }
+
+        binding.backButton.setOnClickListener {
+            // Navigate back to the previous fragment
+            findNavController().navigateUp()
         }
 
     }

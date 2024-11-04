@@ -1,7 +1,5 @@
 package com.heinlin.thenewsapp.util
 
-import androidx.core.app.NotificationCompat.MessagingStyle.Message
-
 sealed class Resource<T>(
     val data: T? = null,
     val message: String? = null

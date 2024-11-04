@@ -1,4 +1,4 @@
-package com.heinlin.thenewsapp.ui
+package com.heinlin.thenewsapp.ui.viewmodel
 
 import android.app.Application
 import android.content.Context
@@ -15,7 +15,8 @@ import kotlinx.coroutines.launch
 import okio.IOException
 import retrofit2.Response
 
-class NewsViewModel(app: Application, val newsRespository: NewsRepository) : AndroidViewModel(app) {
+class NewsViewModel(app: Application, val newsRespository: NewsRepository) :
+    AndroidViewModel(app) {
 
     val headlines: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var headlinesPage = 1
@@ -75,11 +76,11 @@ class NewsViewModel(app: Application, val newsRespository: NewsRepository) : And
         return Resource.Error(response.message())
     }
 
-    fun addToFavotites(article: Article) = viewModelScope.launch {
+    fun addToFavorites(article: Article) = viewModelScope.launch {
         newsRespository.upsert(article)
     }
 
-    fun getFavotiteNews() = newsRespository.getFavoriteNews()
+    fun getFavoriteNews() = newsRespository.getFavoriteNews()
 
     fun deleteArticle(article: Article) = viewModelScope.launch {
         newsRespository.deleteArticle(article)

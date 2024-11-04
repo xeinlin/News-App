@@ -17,11 +17,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.heinlin.thenewsapp.R
 import com.heinlin.thenewsapp.adapters.NewsAdapter
 import com.heinlin.thenewsapp.databinding.FragmentHeadlinesBinding
-import com.heinlin.thenewsapp.ui.NewsActivity
-import com.heinlin.thenewsapp.ui.NewsViewModel
+import com.heinlin.thenewsapp.NewsActivity
+import com.heinlin.thenewsapp.ui.viewmodel.NewsViewModel
 import com.heinlin.thenewsapp.util.Constants
 import com.heinlin.thenewsapp.util.Resource
-
 
 class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
 
@@ -35,7 +34,6 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHeadlinesBinding.bind(view)
-
 
         itemHeadlinesError = view.findViewById(R.id.itemHeadlinesError)
 
@@ -141,7 +139,6 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
             }
         }
 
-
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
 
@@ -160,7 +157,7 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
         }
     }
 
-
 }
+
 
 

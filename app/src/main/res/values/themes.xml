@@ -1,16 +1,12 @@
 <resources>
-    <!-- Base application theme. -->
-    <style name="Base.Theme.TheNewsApp" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- Base App theme. -->
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
+        <item name="android:forceDarkAllowed">false</item>
         <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/slate_gray</item>
         <item name="android:statusBarColor">@color/slate_gray</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
-
-    <style name="Theme.TheNewsApp" parent="Base.Theme.TheNewsApp" />
-
-    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/yellow</item>
-    </style>
-
 </resources>

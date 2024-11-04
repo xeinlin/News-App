@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <color name="background_color" tools:ignore="MissingDefaultResource">#121212</color>
+    <color name="text_color" tools:ignore="MissingDefaultResource">#FFFFFF</color>
+    <color name="nav_background" tools:ignore="MissingDefaultResource">#333333</color>
+    <color name="nav_indicator">#ADD8E6</color>
+    <color name="button_background" tools:ignore="MissingDefaultResource">#FF9800</color>
+
+</resources>

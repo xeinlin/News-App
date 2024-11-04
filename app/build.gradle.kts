@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.heinlin.thenewsapp"
-        minSdk = 28
+        minSdk = 29
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -50,6 +50,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation (libs.material.v161)
 
     // Architectural Components
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
@@ -79,10 +80,14 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
 
     // Glide
-    implementation(libs.glide)
-    ksp(libs.compiler)
+   /* implementation(libs.glide)
+    annotationProcessor(libs.glide.compiler)*/
+    implementation(libs.glide.v4150) // Replace with the latest version
+    annotationProcessor(libs.compiler.v4150) // Replace with the latest version
 
     //splashscreen
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.support.annotations)
+
+
 }

@@ -39,4 +39,8 @@
             android:name="article"
             app:argType="com.heinlin.thenewsapp.models.Article" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.heinlin.thenewsapp.ui.fragments.SettingsFragment"
+        android:label="Settings" />
 </navigation>
