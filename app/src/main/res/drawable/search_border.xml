@@ -3,8 +3,8 @@
     android:shape="rectangle">
 
     <stroke
-        android:width="2dp"
-        android:color="@color/nav_indicator" />
+        android:width="3dp"
+        android:color="#16BCA3" />
     <corners android:radius="14dp" />
 
 </shape>

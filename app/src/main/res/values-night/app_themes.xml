@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- My App Dark theme -->
     <style name="MyDarkTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your dark theme here -->
         <item name="colorPrimary">@color/white</item>

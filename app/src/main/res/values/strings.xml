@@ -17,6 +17,15 @@
 
     <string name="preferences" translatable="false">Preferences</string>
     <string name="preferences_image_description" translatable="false">preference_image</string>
+    <string name="search_news_hint" translatable="false">Search news...</string>
+
+    <string name="source" translatable="false">SOURCE</string>
+    <string name="title" translatable="false">TITLE</string>
+    <string name="date_time" translatable="false">DATE TIME</string>
+
+    <string name="news_app" translatable="false">News App</string>
+    <string name="Version" translatable="false">1.0.0</string>
+    <string name="settings" translatable="false">Settings</string>
 
     <!-- language -->
     <string name="select_language" translatable="false">Select Language</string>
@@ -29,9 +38,5 @@
     <string name="sys_default" translatable="false">Default</string>
     <string name="light_mode" translatable="false">Light</string>
     <string name="dark_mode" translatable="false">Dark</string>
-
-    <string name="news_app" translatable="false">News App</string>
-    <string name="Version" translatable="false">1.0.0</string>
-    <string name="settings" translatable="false">Settings</string>
-
+    
 </resources>

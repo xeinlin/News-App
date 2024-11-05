@@ -3,7 +3,6 @@ package com.heinlin.thenewsapp.ui.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +14,7 @@ import com.heinlin.thenewsapp.adapters.NewsAdapter
 import com.heinlin.thenewsapp.databinding.FragmentFavoritesBinding
 import com.heinlin.thenewsapp.ui.viewmodel.NewsViewModel
 
+@Suppress("MemberVisibilityCanBePrivate")
 class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
     lateinit var newsViewModel: NewsViewModel
@@ -28,7 +28,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         newsViewModel = (activity as NewsActivity).newsViewModel
         setFavoritesRecycler()
 
-        newsAdapter.setOnItemClicklistener {
+        newsAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putSerializable("article", it)
             }
@@ -65,9 +65,9 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
             attachToRecyclerView(binding.recyclerFavourites)
         }
 
-        newsViewModel.getFavoriteNews().observe(viewLifecycleOwner, Observer { articles ->
+        newsViewModel.getFavoriteNews().observe(viewLifecycleOwner) { articles ->
             newsAdapter.differ.submitList(articles)
-        })
+        }
 
     }
 

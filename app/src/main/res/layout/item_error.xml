@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/error_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white_gray_background"
     android:orientation="horizontal"
     app:cardCornerRadius="10dp">
 
@@ -20,6 +22,7 @@
             android:gravity="center_horizontal"
             android:text="@string/no_internet"
             android:textAlignment="center"
+            android:textColor="@color/text_color"
             android:textSize="16sp" />
 
         <Button
@@ -28,7 +31,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_weight="1"
-            android:text="@string/retry" />
+            android:background="@drawable/round_button"
+            android:text="@string/retry"
+            android:textColor="@color/text_color"
+            tools:ignore="VisualLintButtonSize" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

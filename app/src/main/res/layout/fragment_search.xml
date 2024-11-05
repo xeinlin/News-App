@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color">
@@ -30,17 +31,19 @@
             android:layout_width="310dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:autofillHints="Science News"
             android:background="@drawable/search_border"
             android:drawableEnd="@drawable/ic_search"
             android:drawableTint="@color/text_color"
             android:fontFamily="@font/poppins"
-            android:hint="Search news..."
+            android:hint="@string/search_news_hint"
             android:padding="8dp"
             android:textColor="@color/text_color"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/backButton"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextFields,TouchTargetSizeCheck,TextContrastCheck" />
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView

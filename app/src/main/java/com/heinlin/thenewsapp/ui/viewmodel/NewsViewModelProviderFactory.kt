@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.heinlin.thenewsapp.repository.NewsRepository
 
+@Suppress("UNCHECKED_CAST")
 class NewsViewModelProviderFactory(
     private val app: Application,
     private val newsRepository: NewsRepository

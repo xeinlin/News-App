@@ -15,7 +15,8 @@ import kotlinx.coroutines.launch
 import okio.IOException
 import retrofit2.Response
 
-class NewsViewModel(app: Application, val newsRespository: NewsRepository) :
+@Suppress("MemberVisibilityCanBePrivate")
+class NewsViewModel(app: Application, val newsRepository: NewsRepository) :
     AndroidViewModel(app) {
 
     val headlines: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
@@ -77,13 +78,13 @@ class NewsViewModel(app: Application, val newsRespository: NewsRepository) :
     }
 
     fun addToFavorites(article: Article) = viewModelScope.launch {
-        newsRespository.upsert(article)
+        newsRepository.upsert(article)
     }
 
-    fun getFavoriteNews() = newsRespository.getFavoriteNews()
+    fun getFavoriteNews() = newsRepository.getFavoriteNews()
 
     fun deleteArticle(article: Article) = viewModelScope.launch {
-        newsRespository.deleteArticle(article)
+        newsRepository.deleteArticle(article)
     }
 
     fun internetConnection(context: Context): Boolean {
@@ -103,7 +104,7 @@ class NewsViewModel(app: Application, val newsRespository: NewsRepository) :
         headlines.postValue(Resource.Loading())
         try {
             if (internetConnection(this.getApplication())) {
-                val response = newsRespository.getheadlines(countryCode, headlinesPage)
+                val response = newsRepository.getheadlines(countryCode, headlinesPage)
                 headlines.postValue(handleHeadlinesResponse(response))
             } else {
                 headlines.postValue(Resource.Error("No internet connection"))
@@ -121,7 +122,7 @@ class NewsViewModel(app: Application, val newsRespository: NewsRepository) :
         searchNews.postValue(Resource.Loading())
         try {
             if (internetConnection(this.getApplication())) {
-                val response = newsRespository.searchNews(searchQuery, searchNewsPage)
+                val response = newsRepository.searchNews(searchQuery, searchNewsPage)
                 searchNews.postValue(handleSearchNewsResponse(response))
             } else {
                 searchNews.postValue(Resource.Error("No internet connecting"))

@@ -9,7 +9,7 @@
         android:id="@+id/article_toolbar"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/nav_background"
+        android:background="@color/white_gray_background"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
@@ -36,10 +36,12 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/white_gray_background"
         android:src="@drawable/ic_favorite"
+        android:tint="@color/Icon_color"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

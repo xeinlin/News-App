@@ -16,7 +16,7 @@ interface NewsAPI {
         pageNumber: Int = 1,
         @Query("apiKey")
         apiKey: String = API_KEY
-    ): retrofit2.Response<NewsResponse>
+    ): Response<NewsResponse>
 
     @GET("v2/everything")
     suspend fun searchForNews(

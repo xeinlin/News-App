@@ -16,6 +16,9 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
+@Suppress("UselessCallOnNotNull", "MemberVisibilityCanBePrivate", "ComplexRedundantLet",
+    "SpellCheckingInspection"
+)
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -81,7 +84,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         }
     }
 
-    fun setOnItemClicklistener(listener: (Article) -> Unit) {
+    fun setOnItemClickListener(listener: (Article) -> Unit) {
         onItemClickListener = listener
     }
 

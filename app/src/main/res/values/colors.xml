@@ -199,9 +199,9 @@
     <color name="softer_black">#383535</color>
 
     <color name="background_color">#FFFFFF</color> <!-- Light background -->
-    <color name="text_color">#000000</color>       <!-- Dark text -->
-    <color name="nav_background">#F5F5F5</color>   <!-- Light background for bottom_navigation -->
-    <color name="nav_indicator">#ADD8E6</color>   <!-- Light background for bon_nav_indicator -->
-    <color name="button_background">#FFA726</color> <!-- Orange color for buttons -->
+    <color name="text_color">#000000</color> <!-- Dark text -->
+    <color name="Icon_color">@color/softer_black</color> <!-- Light Icon -->
+    <color name="white_gray_background">#F5F5F5</color> <!-- Light Gray background -->
+    <color name="indicator">#ADD8E6</color> <!-- Light background for indicator -->
 
 </resources>

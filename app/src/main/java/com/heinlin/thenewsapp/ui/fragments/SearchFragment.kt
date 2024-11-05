@@ -1,5 +1,6 @@
 package com.heinlin.thenewsapp.ui.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +12,6 @@ import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,15 +29,17 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
+@Suppress("NAME_SHADOWING", "MemberVisibilityCanBePrivate")
 class SearchFragment : Fragment(R.layout.fragment_search) {
 
     lateinit var newsViewModel: NewsViewModel
     lateinit var newsAdapter: NewsAdapter
-    lateinit var retryButtom: Button
+    lateinit var retryButton: Button
     lateinit var errorText: TextView
     lateinit var itemSearchError: CardView
     lateinit var binding: FragmentSearchBinding
 
+    @SuppressLint("InflateParams")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSearchBinding.bind(view)
@@ -48,13 +50,13 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view: View = inflater.inflate(R.layout.item_error, null)
 
-        retryButtom = view.findViewById(R.id.retryButton)
+        retryButton = view.findViewById(R.id.retryButton)
         errorText = view.findViewById(R.id.errorText)
 
         newsViewModel = (activity as NewsActivity).newsViewModel
         setupSearchRecycler()
 
-        newsAdapter.setOnItemClicklistener {
+        newsAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putSerializable("article", it)
             }
@@ -77,7 +79,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             }
         }
 
-        newsViewModel.searchNews.observe(viewLifecycleOwner, Observer { response ->
+        newsViewModel.searchNews.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Success<*> -> {
                     hideProgressBar()
@@ -105,9 +107,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                     showProgressBar()
                 }
             }
-        })
+        }
 
-        retryButtom.setOnClickListener {
+        retryButton.setOnClickListener {
             if (binding.searchEdit.text.toString().isNotEmpty()) {
                 newsViewModel.searchNews(binding.searchEdit.text.toString())
             } else {
@@ -163,9 +165,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
             val isNotAtBeginning = firstVisibleItemPosition >= 0
             val isTotalMoreThanVisible = totalItemCount >= Constants.QUERY_PAGE_SIZE
-            val shouldPagnite =
+            val shouldPaginate =
                 isNoErrors && isNotLoadingAndNotPage && isAtLastItem && isNotAtBeginning && isTotalMoreThanVisible && isScrolling
-            if (shouldPagnite) {
+            if (shouldPaginate) {
                 newsViewModel.searchNews(binding.searchEdit.text.toString())
                 isScrolling = false
             }

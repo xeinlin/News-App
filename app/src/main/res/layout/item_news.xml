@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/background_color"
     android:clipToOutline="true"
     android:elevation="2dp"
-    android:padding="10dp">
+    android:padding="10dp"
+    tools:ignore="UnusedAttribute">
 
     <!-- Large Image at the Top -->
     <com.google.android.material.imageview.ShapeableImageView
@@ -27,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto"
-        android:text="SOURCE"
+        android:text="@string/source"
         android:textColor="@color/purple"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +44,7 @@
         android:ellipsize="end"
         android:fontFamily="@font/poppins"
         android:maxLines="2"
-        android:text="TITLE"
+        android:text="@string/title"
         android:textColor="@color/text_color"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -57,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:padding="8dp"
-        android:text="DATE TIME"
+        android:text="@string/date_time"
         android:textColor="@color/text_color"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"

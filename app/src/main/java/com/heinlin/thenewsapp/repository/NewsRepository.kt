@@ -1,16 +1,17 @@
 package com.heinlin.thenewsapp.repository
 
-import com.heinlin.thenewsapp.api.RetrofitInstance
+import com.heinlin.thenewsapp.api.Retrofit
 import com.heinlin.thenewsapp.db.ArticleDatabase
 import com.heinlin.thenewsapp.models.Article
 
+@Suppress("SpellCheckingInspection", "MemberVisibilityCanBePrivate")
 class NewsRepository(val db: ArticleDatabase) {
 
     suspend fun getheadlines(countryCode: String, pageNumber: Int) =
-        RetrofitInstance.api.getHeadlines(countryCode, pageNumber)
+        Retrofit.api.getHeadlines(countryCode, pageNumber)
 
     suspend fun searchNews(searchQuery: String, pageNumber: Int) =
-        RetrofitInstance.api.searchForNews(searchQuery, pageNumber)
+        Retrofit.api.searchForNews(searchQuery, pageNumber)
 
     suspend fun upsert(article: Article) = db.getArticleDao().upsert(article)
 

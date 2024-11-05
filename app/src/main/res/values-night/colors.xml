@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <color name="background_color" tools:ignore="MissingDefaultResource">#121212</color>
-    <color name="text_color" tools:ignore="MissingDefaultResource">#FFFFFF</color>
-    <color name="nav_background" tools:ignore="MissingDefaultResource">#333333</color>
-    <color name="nav_indicator">#ADD8E6</color>
-    <color name="button_background" tools:ignore="MissingDefaultResource">#FF9800</color>
+    <color name="background_color" tools:ignore="MissingDefaultResource">#121212</color> <!-- Night background -->
+    <color name="text_color" tools:ignore="MissingDefaultResource">#FFFFFF</color> <!-- Light text -->
+    <color name="Icon_color">@color/white_smoke</color> <!-- Night Icon -->
+    <color name="white_gray_background" tools:ignore="MissingDefaultResource">#333333</color> <!-- Night Gray background -->
+    <color name="indicator">#3F798C</color> <!-- Night background for indicator -->
 
 </resources>

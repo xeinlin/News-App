@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.heinlin.thenewsapp.ui.fragments
 
 import android.annotation.SuppressLint
