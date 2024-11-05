@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebViewClient
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.heinlin.thenewsapp.R
@@ -38,6 +40,11 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         binding.fab.setOnClickListener {
             newsViewModel.addToFavorites(article)
             Snackbar.make(view, "Added to favorites", Snackbar.LENGTH_SHORT).show()
+        }
+
+        binding.articleBack.setOnClickListener {
+            // Navigate back to the previous fragment
+            findNavController().navigateUp()
         }
     }
 

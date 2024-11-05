@@ -61,7 +61,8 @@
                 android:layout_height="20dp"
                 android:layout_marginEnd="10dp"
                 android:contentDescription="@string/dark_mode_icon"
-                android:src="@drawable/darkmode" />
+                android:src="@drawable/darkmode"
+                app:tint="@color/text_color" />
 
             <TextView
                 android:layout_width="0dp"
