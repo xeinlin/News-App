@@ -198,10 +198,11 @@
     <color name="navy">#000080</color>
     <color name="softer_black">#383535</color>
 
-    <color name="background_color">#FFFFFF</color> <!-- Light background -->
-    <color name="text_color">#000000</color> <!-- Dark text -->
+    <color name="background_color">@color/white</color> <!-- Light background -->
+    <color name="text_color">@color/black</color> <!-- Dark text -->
     <color name="Icon_color">@color/softer_black</color> <!-- Light Icon -->
-    <color name="white_gray_background">#F5F5F5</color> <!-- Light Gray background -->
+    <color name="white_gray_background">#E1E3E4</color> <!-- Light Gray background -->
     <color name="indicator">#ADD8E6</color> <!-- Light background for indicator -->
+    <color name="ripple_color">#1FBCBC</color> <!-- Light ripple -->
 
 </resources>

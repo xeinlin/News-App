@@ -5,15 +5,17 @@ package com.heinlin.thenewsapp.ui.fragments
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.preference.PreferenceManager
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
+import androidx.fragment.app.Fragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.heinlin.thenewsapp.R
 import java.util.Locale
 
@@ -43,20 +45,21 @@ class SettingsFragment : Fragment() {
         darkModeSwitch = view.findViewById(R.id.dark_mode_switch)
         versionTextView = view.findViewById(R.id.version_text_view)
 
-        versionTextView.text = "1.0.0"
-
         // Load dark mode state from SharedPreferences
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         darkModeSwitch.isChecked = sharedPreferences.getBoolean("dark_mode", false)
+        darkModeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            setDarkMode(isChecked)
+            saveDarkModePreference(isChecked)
+        }
+
 
         languageButton.setOnClickListener {
             showLanguageDialog()
         }
 
-        darkModeSwitch.setOnCheckedChangeListener { _, isChecked ->
-            setDarkMode(isChecked)
-            saveDarkModePreference(isChecked)
-        }
+        versionTextView.text = "1.0.0"
+
     }
 
     private fun applyDarkModeFromPreferences() {
@@ -83,16 +86,53 @@ class SettingsFragment : Fragment() {
     }
 
     private fun showLanguageDialog() {
-        val languages = arrayOf("English", "Burmese")
-        AlertDialog.Builder(requireContext())
-            .setTitle("Select Language")
-            .setItems(languages) { _, which ->
-                when (which) {
-                    0 -> changeLanguage("en")
-                    1 -> changeLanguage("my")
-                }
+        val dialogView = layoutInflater.inflate(R.layout.dialog_language, null)
+
+        val languageRadioGroup = dialogView.findViewById<RadioGroup>(R.id.language_radio_group)
+        val radioEnglish = dialogView.findViewById<RadioButton>(R.id.radio_english)
+        val radioBurmese = dialogView.findViewById<RadioButton>(R.id.radio_myanmar)
+        val radioThai = dialogView.findViewById<RadioButton>(R.id.radio_thai)
+        val cancelButton = dialogView.findViewById<Button>(R.id.cancel_button)
+
+        // Set default language based on saved preferences
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val savedLanguage = sharedPreferences.getString("language", "en")
+        when (savedLanguage) {
+            "en" -> radioEnglish.isChecked = true
+            "my" -> radioBurmese.isChecked = true
+            "th" -> radioThai.isChecked = true
+        }
+
+        val dialog = MaterialAlertDialogBuilder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        // Set the cancel button listener
+        cancelButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        // Set the radio button selection listener
+        languageRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.radio_english -> changeLanguage("en")
+                R.id.radio_myanmar -> changeLanguage("my")
+                R.id.radio_thai -> changeLanguage("th")
             }
-            .show()
+            // Save the selected language in SharedPreferences
+            val editor = sharedPreferences.edit()
+            editor.putString(
+                "language", when (checkedId) {
+                    R.id.radio_english -> "en"
+                    R.id.radio_myanmar -> "my"
+                    else -> "th"
+                }
+            )
+            editor.apply()
+        }
+
+        dialog.show()
+
     }
 
     private fun changeLanguage(languageCode: String) {
@@ -103,6 +143,7 @@ class SettingsFragment : Fragment() {
         resources.updateConfiguration(config, resources.displayMetrics)
         requireActivity().recreate() // Recreate activity to apply language change
     }
+
 }
 
 
