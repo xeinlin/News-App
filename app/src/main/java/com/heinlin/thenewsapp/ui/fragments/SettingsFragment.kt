@@ -13,7 +13,6 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.heinlin.thenewsapp.R
-import com.heinlin.thenewsapp.databinding.FragmentSettingBinding
 import com.heinlin.thenewsapp.util.PreferencesManager
 
 class SettingsFragment : Fragment() {
@@ -22,12 +21,10 @@ class SettingsFragment : Fragment() {
     private lateinit var darkModeSwitch: SwitchCompat
     private lateinit var versionTextView: TextView
     private lateinit var preferencesManager: PreferencesManager
-    private lateinit var binding: FragmentSettingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        preferencesManager = PreferencesManager(requireContext())
-        preferencesManager.applyDarkMode() // Apply on creation
+        onCreateNecessary()
     }
 
     override fun onCreateView(
@@ -37,10 +34,18 @@ class SettingsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_setting, container, false)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        settingViewNecessary(view)
+    }
 
+    private fun onCreateNecessary() {
+        preferencesManager = PreferencesManager(requireContext())
+        preferencesManager.applyDarkMode() // Apply on creation
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun settingViewNecessary(view: View) {
         languageButton = view.findViewById(R.id.language_button)
         darkModeSwitch = view.findViewById(R.id.dark_mode_switch)
         versionTextView = view.findViewById(R.id.version_text_view)
@@ -57,23 +62,7 @@ class SettingsFragment : Fragment() {
         }
 
         versionTextView.text = "1.0.0"
-    }
 
-    override fun onResume() {
-        super.onResume()
-        // Reapply language when returning to the SettingsFragment
-        PreferencesManager(requireContext()).applyLanguage(requireContext())
-    }
-
-
-    private fun updateLanguageText(language: String) {
-        val languageText = when (language) {
-            "en" -> getString(R.string.english)
-            "my" -> getString(R.string.myanmar)
-            "th" -> getString(R.string.thai)
-            else -> getString(R.string.english) // Default
-        }
-        binding.languageButton.text = languageText // Assuming you have a TextView to show the language
     }
 
     private fun showLanguageDialog() {

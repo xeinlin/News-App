@@ -17,19 +17,28 @@ import com.heinlin.thenewsapp.util.PreferencesManager
 @Suppress("MemberVisibilityCanBePrivate")
 class ArticleFragment : Fragment(R.layout.fragment_article) {
 
-    lateinit var newsViewModel: NewsViewModel
+    private lateinit var newsViewModel: NewsViewModel
     val args: ArticleFragmentArgs by navArgs()
-    lateinit var binding: FragmentArticleBinding
+    private lateinit var binding: FragmentArticleBinding
 
-    @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        articleViewNecessary(view)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        PreferencesManager(requireContext()).applyLanguage(requireContext())
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun articleViewNecessary(view: View) {
         binding = FragmentArticleBinding.bind(view)
 
         newsViewModel = (activity as NewsActivity).newsViewModel
         val article = args.article
-
         binding.webView.settings.javaScriptEnabled = true
+
 
         binding.webView.apply {
             webViewClient = WebViewClient()
@@ -46,12 +55,6 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
             findNavController().navigateUp()
         }
     }
-
-    override fun onResume() {
-        super.onResume()
-        PreferencesManager(requireContext()).applyLanguage(requireContext())
-    }
-
 
 }
 

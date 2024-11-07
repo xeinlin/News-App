@@ -30,7 +30,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto"
         android:text="@string/source"
-        android:textColor="@color/purple"
+        android:textColor="@color/news_source"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/articleImage" />

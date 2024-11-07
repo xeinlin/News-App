@@ -32,18 +32,27 @@ import kotlinx.coroutines.launch
 @Suppress("NAME_SHADOWING", "MemberVisibilityCanBePrivate")
 class SearchFragment : Fragment(R.layout.fragment_search) {
 
+    lateinit var binding: FragmentSearchBinding
     lateinit var newsViewModel: NewsViewModel
+    lateinit var itemSearchError: CardView
+
     lateinit var newsAdapter: NewsAdapter
     lateinit var retryButton: Button
     lateinit var errorText: TextView
-    lateinit var itemSearchError: CardView
-    lateinit var binding: FragmentSearchBinding
 
-    @SuppressLint("InflateParams")
+    var isScrolling = false
+    var isLastPage = false
+    var isLoading = false
+    var isError = false
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentSearchBinding.bind(view)
+        searchViewNecessary(view)
+    }
 
+    @SuppressLint("InflateParams")
+    private fun searchViewNecessary(view: View){
+        binding = FragmentSearchBinding.bind(view)
         itemSearchError = view.findViewById(R.id.itemSearchError)
 
         val inflater =
@@ -124,10 +133,14 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     }
 
-    var isError = false
-    var isLoading = false
-    var isLastPage = false
-    var isScrolling = false
+    private fun setupSearchRecycler() {
+        newsAdapter = NewsAdapter()
+        binding.recyclerSearch.apply {
+            adapter = newsAdapter
+            layoutManager = LinearLayoutManager(activity)
+            addOnScrollListener(this@SearchFragment.scrollListener)
+        }
+    }
 
     private fun hideProgressBar() {
         binding.paginationProgressBar.visibility = View.INVISIBLE
@@ -179,15 +192,6 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
                 isScrolling = true
             }
-        }
-    }
-
-    private fun setupSearchRecycler() {
-        newsAdapter = NewsAdapter()
-        binding.recyclerSearch.apply {
-            adapter = newsAdapter
-            layoutManager = LinearLayoutManager(activity)
-            addOnScrollListener(this@SearchFragment.scrollListener)
         }
     }
 

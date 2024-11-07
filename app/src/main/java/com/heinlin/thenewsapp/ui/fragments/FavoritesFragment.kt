@@ -23,8 +23,19 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentFavoritesBinding.bind(view)
+        favoriteViewNecessary(view)
+    }
 
+    private fun setFavoritesRecycler() {
+        newsAdapter = NewsAdapter()
+        binding.recyclerFavourites.apply {
+            adapter = newsAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
+    }
+
+    private fun favoriteViewNecessary(view: View) {
+        binding = FragmentFavoritesBinding.bind(view)
         newsViewModel = (activity as NewsActivity).newsViewModel
         setFavoritesRecycler()
 
@@ -67,15 +78,6 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
         newsViewModel.getFavoriteNews().observe(viewLifecycleOwner) { articles ->
             newsAdapter.differ.submitList(articles)
-        }
-
-    }
-
-    private fun setFavoritesRecycler() {
-        newsAdapter = NewsAdapter()
-        binding.recyclerFavourites.apply {
-            adapter = newsAdapter
-            layoutManager = LinearLayoutManager(activity)
         }
     }
 

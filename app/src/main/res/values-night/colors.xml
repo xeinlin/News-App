@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <color name="background_color" tools:ignore="MissingDefaultResource">#151518</color> <!-- Night background -->
-    <color name="text_color" tools:ignore="MissingDefaultResource">#FFFFFF</color> <!-- Light text -->
-    <color name="Icon_color">@color/white_smoke</color> <!-- Night Icon -->
-    <color name="white_gray_background" tools:ignore="MissingDefaultResource">#232222</color> <!-- Night Gray background -->
-    <color name="indicator">#3F798C</color> <!-- Night background for indicator -->
-    <color name="ripple_color">#25ADAD</color> <!-- Night ripple -->
+    <!--Project Night-->
+    <color name="background_color" tools:ignore="MissingDefaultResource">#151518</color> <!-- background -->
+    <color name="text_color" tools:ignore="MissingDefaultResource">#FFFFFF</color> <!-- text -->
+    <color name="Icon_color">@color/white_smoke</color> <!-- Icon -->
+
+    <color name="white_gray_background" tools:ignore="MissingDefaultResource">#232222</color> <!-- Gray background -->
+    <color name="indicator">#3F798C</color> <!-- background for indicator -->
+    <color name="ripple_color">#25ADAD</color> <!-- ripple -->
+    <color name="news_source">#80D8FF</color> <!-- News Source -->
 
 </resources>

@@ -25,18 +25,27 @@ import com.heinlin.thenewsapp.util.Resource
 @Suppress("NAME_SHADOWING", "MemberVisibilityCanBePrivate")
 class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
 
+    lateinit var binding: FragmentHeadlinesBinding
+    lateinit var itemHeadlinesError: CardView
     lateinit var newsViewModel: NewsViewModel
+
     lateinit var newsAdapter: NewsAdapter
     lateinit var retryButton: Button
     lateinit var errorText: TextView
-    lateinit var itemHeadlinesError: CardView
-    lateinit var binding: FragmentHeadlinesBinding
 
-    @SuppressLint("InflateParams")
+    var isScrolling = false
+    var isLastPage = false
+    var isLoading = false
+    var isError = false
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentHeadlinesBinding.bind(view)
+        headlineViewNecessary(view)
+    }
 
+    @SuppressLint("InflateParams")
+    private fun headlineViewNecessary(view: View) {
+        binding = FragmentHeadlinesBinding.bind(view)
         itemHeadlinesError = view.findViewById(R.id.itemHeadlinesError)
 
         val inflater =
@@ -88,13 +97,16 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
         retryButton.setOnClickListener {
             newsViewModel.getHeadline("us")
         }
-
     }
 
-    var isError = false
-    var isLoading = false
-    var isLastPage = false
-    var isScrolling = false
+    private fun setHeadLinesRecycler() {
+        newsAdapter = NewsAdapter()
+        binding.recyclerHeadlines.apply {
+            adapter = newsAdapter
+            layoutManager = LinearLayoutManager(activity)
+            addOnScrollListener(this@HeadlinesFragment.scrollListener)
+        }
+    }
 
     private fun hideProgressBar() {
         binding.paginationProgressBar.visibility = View.INVISIBLE
@@ -146,15 +158,6 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
             if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
                 isScrolling = true
             }
-        }
-    }
-
-    private fun setHeadLinesRecycler() {
-        newsAdapter = NewsAdapter()
-        binding.recyclerHeadlines.apply {
-            adapter = newsAdapter
-            layoutManager = LinearLayoutManager(activity)
-            addOnScrollListener(this@HeadlinesFragment.scrollListener)
         }
     }
 
