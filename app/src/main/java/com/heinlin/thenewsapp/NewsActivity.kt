@@ -12,20 +12,33 @@ import com.heinlin.thenewsapp.db.ArticleDatabase
 import com.heinlin.thenewsapp.repository.NewsRepository
 import com.heinlin.thenewsapp.ui.viewmodel.NewsViewModel
 import com.heinlin.thenewsapp.ui.viewmodel.NewsViewModelProviderFactory
+import com.heinlin.thenewsapp.util.PreferencesManager
 
 
 class NewsActivity : AppCompatActivity() {
 
+    private lateinit var preferencesManager: PreferencesManager
     internal lateinit var newsViewModel: NewsViewModel
     private lateinit var binding: ActivityNewsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        onCreateNecessary()
+    }
+
+    private fun onCreateNecessary() {
+        preferencesManager = PreferencesManager(this)
+        preferencesManager.applyDarkMode()
+        preferencesManager.applyLanguage(this)
+
         Thread.sleep(1000)
         installSplashScreen()
         binding = ActivityNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        mainNecessary()
+    }
 
+    private fun mainNecessary() {
         val newsRepository = NewsRepository(ArticleDatabase(this))
         val viewModelProviderFactory = NewsViewModelProviderFactory(application, newsRepository)
         newsViewModel =
@@ -67,4 +80,5 @@ class NewsActivity : AppCompatActivity() {
             binding.toolbarTitle.text = toolbarTitle
         }
     }
+
 }

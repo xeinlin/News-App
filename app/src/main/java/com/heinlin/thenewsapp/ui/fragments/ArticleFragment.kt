@@ -12,6 +12,7 @@ import com.heinlin.thenewsapp.NewsActivity
 import com.heinlin.thenewsapp.R
 import com.heinlin.thenewsapp.databinding.FragmentArticleBinding
 import com.heinlin.thenewsapp.ui.viewmodel.NewsViewModel
+import com.heinlin.thenewsapp.util.PreferencesManager
 
 @Suppress("MemberVisibilityCanBePrivate")
 class ArticleFragment : Fragment(R.layout.fragment_article) {
@@ -45,6 +46,12 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
             findNavController().navigateUp()
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        PreferencesManager(requireContext()).applyLanguage(requireContext())
+    }
+
 
 }
 
