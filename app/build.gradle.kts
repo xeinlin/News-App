@@ -1,7 +1,11 @@
+@file:Suppress("SpellCheckingInspection")
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -47,10 +51,12 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.config)
+    implementation(libs.firebase.messaging)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation (libs.material.v161)
+    implementation(libs.material.v161)
 
     // Architectural Components
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
@@ -80,14 +86,30 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
 
     // Glide
-   /* implementation(libs.glide)
-    annotationProcessor(libs.glide.compiler)*/
     implementation(libs.glide.v4150) // Replace with the latest version
     annotationProcessor(libs.compiler.v4150) // Replace with the latest version
 
     //splashscreen
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.support.annotations)
+
+    // firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.google.firebase.analytics)
+
+    // Crashlytics
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.analytics)
+    //noinspection UseTomlInstead
+    implementation("com.google.firebase:firebase-crashlytics:19.2.1")
+
+    // Remote Config
+    //noinspection UseTomlInstead
+    implementation("com.google.firebase:firebase-config:22.0.1")
+
+    // Cloud messaging
+    //noinspection UseTomlInstead
+    implementation("com.google.firebase:firebase-messaging:24.0.3")
 
 
 }

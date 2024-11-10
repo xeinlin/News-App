@@ -6,8 +6,12 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatDelegate
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
+import com.heinlin.thenewsapp.R
 import java.util.Locale
 
+@Suppress("unused")
 class PreferencesManager(context: Context) {
 
     private val sharedPreferences: SharedPreferences =
@@ -44,12 +48,15 @@ class PreferencesManager(context: Context) {
         private const val KEY_LANGUAGE = "language"
     }
 
-    // Retrieve night mode colors from Remote Config
-   /* val nightColorBackground: String
+    val nightColorBackground: String
         get() = remoteConfig.getString("default_night_color_background")
 
     val nightColorText: String
         get() = remoteConfig.getString("default_night_color_text")
+
+    // Retrieve toolbar color from Remote Config
+    val toolbarColor: String
+        get() = remoteConfig.getString("toolbar_background_color")
 
     // Initialize Firebase Remote Config
     private val remoteConfig: FirebaseRemoteConfig = FirebaseRemoteConfig.getInstance().apply {
@@ -64,16 +71,15 @@ class PreferencesManager(context: Context) {
     fun fetchRemoteConfigValues(onComplete: (() -> Unit)? = null) {
         remoteConfig.fetchAndActivate()
             .addOnCompleteListener { task ->
-
                 if (task.isSuccessful) {
+                    // Update other preferences from Remote Config if needed
                     isDarkModeEnabled = remoteConfig.getBoolean("default_dark_mode")
                     applyDarkMode()
-
-                    // Notify on completion if needed
+                    // Apply the toolbar color if needed
                     onComplete?.invoke()
                 }
             }
-    }*/
+    }
 
 
 }

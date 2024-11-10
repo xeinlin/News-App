@@ -1,0 +1,14 @@
+<defaults>
+    <entry
+        key="toolbar_background_color"
+        value="#6200EE"/> <!-- Default color for the toolbar background -->
+    <entry
+        key="default_dark_mode"
+        value="false"/>
+    <entry
+        key="default_night_color_background"
+        value="#000000"/>
+    <entry
+        key="default_night_color_text"
+        value="#FFFFFF"/>
+</defaults>

@@ -1,7 +1,11 @@
 package com.heinlin.thenewsapp
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +19,7 @@ import com.heinlin.thenewsapp.ui.viewmodel.NewsViewModel
 import com.heinlin.thenewsapp.ui.viewmodel.NewsViewModelProviderFactory
 
 
+@Suppress("unused")
 class NewsActivity : AppCompatActivity() {
 
     internal lateinit var newsViewModel: NewsViewModel
@@ -37,6 +42,10 @@ class NewsActivity : AppCompatActivity() {
         binding = ActivityNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         onMainNecessary()
+
+        //testCrashlytics()
+        //remoteConfig()
+        //getToken()
     }
 
     private fun onMainNecessary() {
@@ -81,5 +90,38 @@ class NewsActivity : AppCompatActivity() {
             binding.toolbarTitle.text = toolbarTitle
         }
     }
+
+    @SuppressLint("SetTextI18n")
+    private fun testCrashlytics() {
+        val crashButton = Button(this)
+        crashButton.text = "Test Crash"
+        crashButton.setOnClickListener {
+            throw RuntimeException("Test Crash") // Force a crash
+        }
+
+        addContentView(
+            crashButton, ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        )
+    }
+
+    private fun remoteConfig() {
+        preferencesManager.fetchRemoteConfigValues {
+            val toolbarColor = preferencesManager.toolbarColor
+            applyToolbarColor(toolbarColor)
+        }
+    }
+
+    private fun applyToolbarColor(colorHex: String) {
+        try {
+            val color = Color.parseColor(colorHex)
+            binding.toolbar.setBackgroundColor(color)  // Assuming you have a toolbar in your layout
+        } catch (e: IllegalArgumentException) {
+            e.printStackTrace()
+        }
+    }
+
 
 }
