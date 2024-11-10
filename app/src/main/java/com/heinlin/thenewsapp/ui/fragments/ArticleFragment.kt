@@ -11,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.heinlin.thenewsapp.NewsActivity
 import com.heinlin.thenewsapp.R
 import com.heinlin.thenewsapp.databinding.FragmentArticleBinding
+import com.heinlin.thenewsapp.helper.PreferencesManager
 import com.heinlin.thenewsapp.ui.viewmodel.NewsViewModel
 
 @Suppress("MemberVisibilityCanBePrivate")
@@ -23,6 +24,15 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
     @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        articleNecessary(view)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        PreferencesManager(requireContext()).applyLanguage(requireContext())
+    }
+
+    private fun articleNecessary(view: View) {
         binding = FragmentArticleBinding.bind(view)
 
         newsViewModel = (activity as NewsActivity).newsViewModel
@@ -43,8 +53,10 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         binding.articleBack.setOnClickListener {
             // Navigate back to the previous fragment
             findNavController().navigateUp()
+            (activity as NewsActivity).recreate()
         }
     }
+
 
 }
 

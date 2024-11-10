@@ -201,7 +201,7 @@
     <color name="background_color">#FFFFFF</color> <!-- Light background -->
     <color name="text_color">#000000</color> <!-- Dark text -->
     <color name="Icon_color">@color/softer_black</color> <!-- Light Icon -->
-    <color name="white_gray_background">#F5F5F5</color> <!-- Light Gray background -->
+    <color name="white_gray_background">#EBECEF</color> <!-- Light Gray background -->
     <color name="indicator">#ADD8E6</color> <!-- Light background for indicator -->
 
 </resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ข่าว</string>
+    <string name="headlines">หัวข้อข่าว</string>
+    <string name="favourites">รายการโปรด</string>
+    <string name="search">ค้นหา</string>
+    <string name="no_internet">ไม่มีอินเตอร์เน็ต</string>
+    <string name="retry">ลองใหม่อีกครั้ง</string>
+    <string name="version">เวอร์ชัน</string>
+    <string name="change_language">เปลี่ยนภาษา</string>
+    <string name="preferences">การตั้งค่า</string>
+    <string name="search_news_hint">ค้นหาข่าวสาร…</string>
+    <string name="news_app">แอปข่าวสาร</string>
+    <string name="settings">การตั้งค่า</string>
+    <string name="light_mode">แสงสว่าง</string>
+    <string name="dark_mode">โหมดมืด</string>
+    <string name="language">ภาษา</string>
+    <string name="english">ภาษาอังกฤษ</string>
+    <string name="myanmar">พม่า</string>
+    <string name="thai">แบบไทย</string>
+    <string name="select_language">เลือกภาษา</string>
+    <string name="cancel">ยกเลิก</string>
+</resources>

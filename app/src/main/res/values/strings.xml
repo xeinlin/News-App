@@ -3,40 +3,47 @@
     <string name="app_name">News</string>
 
     <!-- Strings -->
-    <string name="headlines" translatable="false">Headlines</string>
-    <string name="favourites" translatable="false">Favourites</string>
-    <string name="search" translatable="false">Search</string>
+    <string name="headlines">Headlines</string>
+    <string name="favourites">Favourites</string>
+    <string name="search">Search</string>
 
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="no_internet" translatable="false">No Internet</string>
-    <string name="retry" translatable="false">Retry</string>
+    <string name="no_internet">No Internet</string>
+    <string name="retry">Retry</string>
 
-    <string name="version" translatable="false">Version</string>
+    <string name="version">Version</string>
     <string name="dark_mode_icon" translatable="false">Dark Mode Icon</string>
-    <string name="change_language" translatable="false">Change Language</string>
+    <string name="change_language">Change Language</string>
 
-    <string name="preferences" translatable="false">Preferences</string>
+    <string name="preferences">Preferences</string>
     <string name="preferences_image_description" translatable="false">preference_image</string>
-    <string name="search_news_hint" translatable="false">Search news...</string>
+    <string name="search_news_hint">Search news…</string>
 
     <string name="source" translatable="false">SOURCE</string>
     <string name="title" translatable="false">TITLE</string>
     <string name="date_time" translatable="false">DATE TIME</string>
 
-    <string name="news_app" translatable="false">News App</string>
-    <string name="Version" translatable="false">1.0.0</string>
-    <string name="settings" translatable="false">Settings</string>
+    <string name="news_app">News App</string>
+    <string name="version_number" translatable="false">1.0.0</string>
+    <string name="settings">Settings</string>
+
+    <!-- DarkMode -->
+    <string name="sys_default" translatable="false">Default</string>
+    <string name="light_mode">Light</string>
+    <string name="dark_mode">Dark Mode</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="language">"Language "</string>
+    <string name="english">English</string>
+
+    <string name="myanmar">Myanmar</string>
+    <string name="thai">Thai</string>
 
     <!-- language -->
-    <string name="select_language" translatable="false">Select Language</string>
+    <string name="select_language">Select Language</string>
     <string-array name="languages_array">
         <item>English</item>
         <item>Burmese</item>
     </string-array>
 
-    <!-- DarkMode -->
-    <string name="sys_default" translatable="false">Default</string>
-    <string name="light_mode" translatable="false">Light</string>
-    <string name="dark_mode" translatable="false">Dark</string>
-    
 </resources>

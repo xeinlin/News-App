@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">News</string>
+    <string name="app_name">သတင်း</string>
+    <string name="headlines">ခေါင်းစီး</string>
+    <string name="favourites">အကြိုက်ဆုံးများ</string>
+    <string name="search">ရှာရန်</string>
+    <string name="no_internet">အင်တာနက်မရှိပါ။</string>
+    <string name="retry">ပြန်ကြိုးစားပါ။</string>
+    <string name="version">ဗားရှင်း</string>
+    <string name="change_language">ဘာသာစကားပြောင်းပါ။</string>
+    <string name="preferences">နှစ်သက်ရာ</string>
+    <string name="search_news_hint">သတင်းရှာပါ…</string>
+    <string name="news_app">သတင်းအက်ပ်</string>
+    <string name="settings">ဆက်တင်များ</string>
+    <string name="light_mode">အလင်း</string>
+    <string name="dark_mode">အမှောင်မုဒ်</string>
+    <string name="language">ဘာသာစကား</string>
+    <string name="english">အင်္ဂလိပ်စာ</string>
+    <string name="myanmar">မြန်မာ</string>
+    <string name="thai">ထိုင်း</string>
+    <string name="select_language">ဘာသာစကားကို ရွေးပါ။</string>
+    <string name="cancel">ပယ်ဖျက်ပါ။</string>
 </resources>

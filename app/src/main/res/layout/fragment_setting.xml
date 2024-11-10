@@ -34,9 +34,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:background="@drawable/round_button"
         android:padding="15dp"
         android:text="@string/change_language"
+        android:backgroundTint="@color/indicator"
         android:textColor="@color/text_color"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/preferences_title"
@@ -60,8 +60,8 @@
             android:padding="16dp">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="30dp"
+                android:layout_height="27dp"
                 android:layout_marginEnd="10dp"
                 android:contentDescription="@string/dark_mode_icon"
                 android:src="@drawable/darkmode"
@@ -99,6 +99,14 @@
             android:orientation="horizontal"
             android:padding="16dp">
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="27dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="@string/dark_mode_icon"
+                android:src="@drawable/version"
+                app:tint="@color/Icon_color" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -111,7 +119,7 @@
                 android:id="@+id/version_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Version"
+                android:text="@string/version_number"
                 android:textColor="@color/text_color"
                 android:textSize="16sp" />
         </LinearLayout>

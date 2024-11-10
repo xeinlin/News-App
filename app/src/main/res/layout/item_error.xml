@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_weight="1"
-            android:background="@drawable/round_button"
+            android:backgroundTint="@color/indicator"
             android:text="@string/retry"
             android:textColor="@color/text_color"
             tools:ignore="VisualLintButtonSize" />

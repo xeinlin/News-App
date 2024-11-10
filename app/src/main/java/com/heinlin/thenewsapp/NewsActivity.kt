@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.heinlin.thenewsapp.databinding.ActivityNewsBinding
 import com.heinlin.thenewsapp.db.ArticleDatabase
+import com.heinlin.thenewsapp.helper.PreferencesManager
 import com.heinlin.thenewsapp.repository.NewsRepository
 import com.heinlin.thenewsapp.ui.viewmodel.NewsViewModel
 import com.heinlin.thenewsapp.ui.viewmodel.NewsViewModelProviderFactory
@@ -18,14 +19,27 @@ class NewsActivity : AppCompatActivity() {
 
     internal lateinit var newsViewModel: NewsViewModel
     private lateinit var binding: ActivityNewsBinding
+    private lateinit var preferencesManager: PreferencesManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        onCreateNecessary()
+    }
+
+    private fun onCreateNecessary() {
+        preferencesManager = PreferencesManager(this)
+        preferencesManager.applyDarkMode()
+        preferencesManager.applyLanguage(this)
+
         Thread.sleep(1000)
         installSplashScreen()
+
         binding = ActivityNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        onMainNecessary()
+    }
 
+    private fun onMainNecessary() {
         val newsRepository = NewsRepository(ArticleDatabase(this))
         val viewModelProviderFactory = NewsViewModelProviderFactory(application, newsRepository)
         newsViewModel =
@@ -67,4 +81,5 @@ class NewsActivity : AppCompatActivity() {
             binding.toolbarTitle.text = toolbarTitle
         }
     }
+
 }
